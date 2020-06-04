@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+##
+## anaconda2 modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tAn Interactive Process Viewer for Linux\n"
+}
+
+module-whatis   "An Interactive Process Viewer for Linux"
+
+set root $env(OPT_INSTALL)/htop2.2.0
+
+prepend-path    PATH    $root/bin
+conflict        python
+
+# Installation:
+# htop-2.2.0-3.el7.x86_64.rpm
