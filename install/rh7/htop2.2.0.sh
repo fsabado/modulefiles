@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Install htop2.2.0
+#Install htop
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" && source ${DIR}/common.sh
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #Init functions
 #DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" && source ${DIR}/common.sh
 
@@ -51,13 +50,31 @@ installRPMS() {
         mkdir -p ${OPT_INSTALL}/${INSTALL_DIR}
         cd ${OPT_INSTALL}/${INSTALL_DIR}
         for PACKAGE in ${@}; do
-            #Downloads and extract
-            #https://explainshell.com/explain?cmd=wget+-c+https%3A%2F%2Fdownload-ib01.fedoraproject.org%2Fpub%2Fepel%2F7%2Fx86_64%2FPackages%2Fh%2Fhtop-2.2.0-3.el7.x86_64.rpm+-O+-+%7C+rpm2cpio+%7C+cpio+-idmv
             wget -c ${PACKAGE} -O - | rpm2cpio | cpio -idmv
+            #curl ${PACKAGE} | rpm2cpio | cpio -idmv
         done
     fi
 }
 
+#Install a list of RPMs
+installTarGz() {
+    # First parameter has to be install directory
+    INSTALL_DIR=${1}
+
+    #Shift to process the rest
+    shift
+
+    if [ -n "${OPT_INSTALL}" ]; then
+        mkdir -p ${OPT_INSTALL}/${INSTALL_DIR}
+        cd ${OPT_INSTALL}/${INSTALL_DIR}
+        for PACKAGE in ${@}; do
+            #Downloads and extract
+            curl ${PACKAGE} | tar -xvz
+        done
+    fi
+}
+
+#Join array
 join_arr() {
     local IFS="$1"
     shift

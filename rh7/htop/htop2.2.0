@@ -8,10 +8,10 @@ proc ModulesHelp { } {
 
 module-whatis   "An Interactive Process Viewer for Linux"
 
-set root $env(OPT_INSTALL)/htop2.2.0
+set root $env(OPT_INSTALL)/htop2.2.0/usr
 
 prepend-path    PATH    $root/bin
-conflict        python
+conflict        htop
 
 # Installation:
 # htop-2.2.0-3.el7.x86_64.rpm
