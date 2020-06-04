@@ -46,9 +46,9 @@ installRPMS() {
     #Shift to process the rest
     shift
 
-    if [ -n "${OPT_INSTALL}" ]; then
-        mkdir -p ${OPT_INSTALL}/${INSTALL_DIR}
-        cd ${OPT_INSTALL}/${INSTALL_DIR}
+    if [ -n "${INSTALL_DIR}" ]; then
+        mkdir -p ${INSTALL_DIR}
+        cd ${INSTALL_DIR}
         for PACKAGE in ${@}; do
             wget -c ${PACKAGE} -O - | rpm2cpio | cpio -idmv
             #curl ${PACKAGE} | rpm2cpio | cpio -idmv
@@ -64,9 +64,9 @@ installTarGz() {
     #Shift to process the rest
     shift
 
-    if [ -n "${OPT_INSTALL}" ]; then
-        mkdir -p ${OPT_INSTALL}/${INSTALL_DIR}
-        cd ${OPT_INSTALL}/${INSTALL_DIR}
+    if [ -n "${INSTALL_DIR}" ]; then
+        mkdir -p ${INSTALL_DIR}
+        cd ${INSTALL_DIR}
         for PACKAGE in ${@}; do
             #Downloads and extract
             curl ${PACKAGE} | tar -xvz

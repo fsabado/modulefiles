@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 #Install Intellij
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" && source ${DIR}/common.sh
@@ -8,5 +9,9 @@ PACKAGE_LIST=(
 )
 
 INSTALL_DIR=${OPT_INSTALL}
-installTarGz "${INSTALL_DIR}" "${PACKAGE_LIST[@]}"
 
+if [ -n "${OPT_INSTALL}" ]; then
+    installTarGz "${INSTALL_DIR}" "${PACKAGE_LIST[@]}"
+else
+    echo "OPT_INSTALL not defined."
+fi
