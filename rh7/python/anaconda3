@@ -8,7 +8,7 @@ proc ModulesHelp { } {
 
 module-whatis   "adds Anaconda Python 3 to your PATH environment variable"
 
-set root $env(HOME)/opt/anaconda3
+set root $env(OPT_INSTALL)/anaconda3
 
 prepend-path    PATH    $root/bin
 conflict        python
